@@ -26,7 +26,7 @@ if uploaded_file is not None:
 #サイドバーに表示する項目
 st.sidebar.write('## 条件指定')
 item_select = st.sidebar.selectbox("品種", item_list)
-if uploaded_file is not None:
+if item_select is not None:
     df = df[df['item']==item_select]
     coa_list = sorted(df['検査項目'].unique())
     coa_select = st.sidebar.selectbox("検査項目", coa_list)
