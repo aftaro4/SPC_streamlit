@@ -15,8 +15,9 @@ st.title('管理図作成app')
 uploaded_file = st.file_uploader("管理図作成アプリ読み込み用.csvを読み込んでください")
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, encoding='cp932')
+    if "item" not in df.columns:
+        df.rename(columns={'品目名称':'item'}, inplace=True)
     item_list = sorted(df['item'].unique())
-    
     thickness_list = sorted(df['膜厚'].unique())
     if len(thickness_list)>1:
         stratify_list = [None, 'coating', '膜厚']
